@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/news-image-20261122/zeee0404/zeee0404-news-image-20261122/rank.svg)](https://make.fun/bounty/news-image-20261122/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261122)
 [![reward](https://make.fun/badge/news-image-20261122/zeee0404/zeee0404-news-image-20261122/reward.svg)](https://make.fun/bounty/news-image-20261122?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261122)
 
-A newspaper front page summing up Sunday 22 November 2026 in one image, drawn in code with @napi-rs/canvas (see `render.mjs`, build tooling only). `main.ts` (Node 22, standard library only) copies `entry.png` to `/output/entry.png` and verifies the copy byte-for-byte.
+A newspaper front page summing up Sunday 22 November 2026 in one image, drawn in code with @napi-rs/canvas (see `render.mjs`, build tooling only). `main.ts` (Node 22, standard library only) copies `entry.png` to `/output/entry.png` and verifies the copy byte-for-byte, so what the judge sees is exactly the image rendered here — nothing is regenerated or altered at entry time.
 
 ## Stories (all first reported on 22 November 2026)
 
@@ -22,7 +22,10 @@ A newspaper front page summing up Sunday 22 November 2026 in one image, drawn in
 mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 ```
 
-Two runs produce byte-identical output.
+The program refuses images over 1 MiB and sources that are not PNGs, then
+copies `entry.png` to `/output/entry.png` (or to the directory set by
+`MAKEFUN_OUTPUT_DIR`) and re-reads the copy to confirm it matches byte for
+byte. Two runs produce byte-identical output.
 
 ---
 
